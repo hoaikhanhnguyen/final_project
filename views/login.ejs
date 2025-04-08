@@ -4,9 +4,11 @@
 <body>
 <div class="container">
     <form class="form-signin" action="/login" method="post">
-        Username: <input type="text" name="username"><br>
+        <label for="username" class="form-label">Username: </label>
+        <input id="username" type="text" name="username"><br>
 
-        Password: <input type="password" name="password"><br>
+        <label for="password" class="form-label">Password: </label>
+        <input id="password" type="password" name="password"><br>
 
         <button>Sign In</button>
     </form>

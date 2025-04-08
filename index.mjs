@@ -43,6 +43,10 @@ app.get("/dbTest", async(req, res) => {
   res.send(rows);
 });//dbTest
 
+app.use((req, res) => {
+  res.status(404).send('<h1>Page not found</h1>')
+});//404
+
 app.listen(3000, ()=>{
   console.log("Express server running on port: " + 3000);
 })
