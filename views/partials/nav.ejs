@@ -7,16 +7,24 @@
                    href="/welcome">Welcome</a>
             </li>
             <li class="main-header__item">
-                <a class="<%= path === '/' ? 'active' : '' %>" href="/">Page1</a>
+                <a class="<%= path === '/' ? 'active' : '' %>" href="/">Events</a>
             </li>
+            <% if (isLoggedIn){ %>
             <li class="main-header__item">
-                <a class="<%= path === '/' ? 'active' : '' %>" href="/">Page2</a>
+                <a class="<%= path === '/' ? 'active' : '' %>" href="/">Add Event</a>
             </li>
+            <% } %>
         </ul>
         <ul class="main-header__item-list">
+            <% if (!isLoggedIn){ %>
             <li class="main-header__item">
-                <a class="<%= path === '/login' ? 'active' : '' %>" href="/">Login</a>
+                <a href="/">Login</a>
             </li>
+          <% } else { %>
+            <li class="main-header__item">
+                <a href="/logout">Logout</a>
+            </li>
+            <% } %>
         </ul>
     </nav>
 </header>

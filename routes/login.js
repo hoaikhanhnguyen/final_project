@@ -12,7 +12,7 @@ router.post('/login', async(req, res) => {
   const match = await bcrypt.compare(password, passwordHash);
   if (match) {
     req.session.authenticated = true;
-    res.render('welcome', { path: '/welcome', current_user: username, password: password });
+    res.render('welcome', { path: '/welcome', isLoggedIn: true, current_user: username, password: password });
   } else {
     res.redirect('/');
   }
