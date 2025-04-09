@@ -10,7 +10,6 @@ router.post('/login', async(req, res) => {
   // remove after database is connected
   let passwordHash = '$2a$10$06ofFgXJ9wysAOzQh0D0..RcDp1w/urY3qhO6VuUJL2c6tzAJPfj6';
   const match = await bcrypt.compare(password, passwordHash);
-  console.log(match);
   if (match) {
     req.session.authenticated = true;
     res.render('welcome', { path: '/welcome', current_user: username, password: password });
