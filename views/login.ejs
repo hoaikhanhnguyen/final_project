@@ -1,17 +1,17 @@
 <%- include("partials/header.ejs") %>
-<%- include("partials/nav.ejs") %>
-
 <body>
-<div class="container">
-    <form class="form-signin" action="/login" method="post">
-        <label for="username" class="form-label">Username: </label>
-        <input id="username" type="text" name="username"><br>
-
-        <label for="password" class="form-label">Password: </label>
-        <input id="password" type="password" name="password"><br>
-
-        <button>Sign In</button>
-    </form>
-</div>
-
+<%- include("partials/nav.ejs") %>
+    <main>
+        <form class="login-form" action="/login" method="POST">
+            <div class="form-control">
+                <label for="email" class="form-label">E-mail</label>
+                <input id="email" type="email" name="email"><br>
+            </div>
+            <div class="form-control">
+                <label for="password" class="form-label">Password</label>
+                <input id="password" type="password" name="password"><br>
+            </div>
+            <button class="btn" type="submit">Login</button>
+        </form>
+    </main>
 </body>

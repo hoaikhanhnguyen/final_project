@@ -34,7 +34,7 @@ app.use(session({
 app.use(loginRoutes);
 
 app.get('/', (req, res) => {
-  res.render('login', {});
+  res.render('login', {path: "/login"});
 });
 
 app.get("/dbTest", async(req, res) => {

@@ -13,7 +13,7 @@ router.post('/login', async(req, res) => {
   console.log(match);
   if (match) {
     req.session.authenticated = true;
-    res.render('welcome', { current_user: username, password: password });
+    res.render('welcome', { path: '/welcome', current_user: username, password: password });
   } else {
     res.redirect('/');
   }
@@ -36,7 +36,7 @@ router.post('/login', async(req, res) => {
 })
 
 router.get('/myProfile', isAuthenticated, (req, res) => {
-  res.render('profile')
+  res.render('profile', { path: '/myProfile' });
 })
 
 router.get('/logout', isAuthenticated, (req, res) => {
