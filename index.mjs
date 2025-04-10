@@ -23,7 +23,9 @@ app.use(session({
   saveUninitialized: true
 }))
 
+//initialize flash messages
 app.use(flash());
+
 //setting up database connection pool
 // const pool = mysql.createPool({
 //   host: "",
