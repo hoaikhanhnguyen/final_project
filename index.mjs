@@ -4,6 +4,9 @@ import session from "express-session";
 import loginRoutes from "./routes/login.js";
 import flash from "connect-flash";
 
+import loginController from "./controllers/login.js";
+import errorController from "./controllers/error.js";
+
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -41,15 +44,7 @@ app.use((req,res,next)=>{
 //routes
 app.use(loginRoutes);
 
-app.get('/', (req, res) => {
-  let message = req.flash('error');
-  if (message.length > 0) {
-    message = message[0];
-  } else {
-    message = null;
-  }
-  res.render('login', {path: "/login", isLoggedIn: false, errorMessage: message});
-});
+app.get('/',loginController.getLogin);
 
 app.get("/dbTest", async(req, res) => {
   let sql = "SELECT CURDATE()";
@@ -57,9 +52,7 @@ app.get("/dbTest", async(req, res) => {
   res.send(rows);
 });//dbTest
 
-app.use((req, res) => {
-  res.status(404).send('<h1>Page not found</h1>')
-});//404
+app.use(errorController.get404);//404
 
 app.listen(3000, ()=>{
   console.log("Express server running on port: " + 3000);
