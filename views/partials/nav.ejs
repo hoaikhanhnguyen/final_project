@@ -17,13 +17,16 @@
         </ul>
         <ul class="main-header__item-list">
             <% if (!isLoggedIn){ %>
-            <li class="main-header__item">
-                <a href="/">Login</a>
-            </li>
-          <% } else { %>
-            <li class="main-header__item">
-                <a href="/logout">Logout</a>
-            </li>
+                <li class="main-header__item">
+                    <a href="/">Login</a>
+                </li>
+                <li class="main-header__item">
+                    <a href="/">Sign Up</a>
+                </li>
+            <% } else { %>
+                <li class="main-header__item">
+                    <a href="/logout">Logout</a>
+                </li>
             <% } %>
         </ul>
     </nav>

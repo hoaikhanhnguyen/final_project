@@ -2,6 +2,7 @@ import express from 'express';
 import mysql from 'mysql2/promise';
 import session from "express-session";
 import loginRoutes from "./routes/login.js";
+import flash from "connect-flash";
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(session({
   saveUninitialized: true
 }))
 
+app.use(flash());
 //setting up database connection pool
 // const pool = mysql.createPool({
 //   host: "",
@@ -30,11 +32,23 @@ app.use(session({
 // });
 // const conn = await pool.getConnection();
 
+//middleware
+app.use((req,res,next)=>{
+  res.locals.isLoggedIn = req.session.authenticated;
+  next();
+})
+
 //routes
 app.use(loginRoutes);
 
 app.get('/', (req, res) => {
-  res.render('login', {path: "/login", isLoggedIn: false});
+  let message = req.flash('error');
+  if (message.length > 0) {
+    message = message[0];
+  } else {
+    message = null;
+  }
+  res.render('login', {path: "/login", isLoggedIn: false, errorMessage: message});
 });
 
 app.get("/dbTest", async(req, res) => {

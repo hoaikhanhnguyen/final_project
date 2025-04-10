@@ -4,6 +4,12 @@ const router = express.Router()
 
 // middleware that is specific to this routes
 router.post('/login', async(req, res) => {
+  let message = req.flash('error');
+  if (message.length > 0) {
+    message = message[0];
+  } else {
+    message = null;
+  }
   let username = req.body.username;
   let password = req.body.password;
 
@@ -12,9 +18,15 @@ router.post('/login', async(req, res) => {
   const match = await bcrypt.compare(password, passwordHash);
   if (match) {
     req.session.authenticated = true;
-    res.render('welcome', { path: '/welcome', isLoggedIn: true, current_user: username, password: password });
+    res.render('welcome', {
+      path: '/welcome',
+      isLoggedIn: true,
+      current_user: username,
+      errorMessage: message
+    });
   } else {
-    res.redirect('/');
+    req.flash('error', 'Invalid email or password.');
+    return res.redirect('/');
   }
 
   // uncomment after database is connected
@@ -28,8 +40,14 @@ router.post('/login', async(req, res) => {
   //
   // if (match) {
   //   req.session.authenticated = true;
-  //   res.render('welcome', { current_user: username, password: password });
+  // res.render('welcome', {
+  //   path: '/welcome',
+  //   isLoggedIn: true,
+  //   current_user: username,
+  //   errorMessage: message
+  // });
   // } else {
+  // req.flash('error', 'Invalid email or password.');
   //   res.redirect('/');
   // }
 })

@@ -77,6 +77,7 @@ form {
   color: #ffeb3b;
 }
 
+/*form control*/
 .form-control {
   margin: 1rem 0;
 }
@@ -108,6 +109,7 @@ form {
   display: block;
 }
 
+/*Button*/
 .btn {
   display: inline-block;
   padding: 0.25rem 1rem;
@@ -149,4 +151,20 @@ form {
 
 .hidden {
   display: none;
+}
+
+/*User Message*/
+.user-message {
+  margin: auto;
+  width: 50%;
+  border: 1px solid #4771fa;
+  padding: 0.5rem;
+  border-radius: 3px;
+  background-color: #b9c9ff;
+  text-align: center;
+}
+
+.user-message--error {
+  background: rgb(255, 176, 176);
+  color: red;
 }
