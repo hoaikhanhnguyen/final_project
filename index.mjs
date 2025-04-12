@@ -40,6 +40,7 @@ app.use(flash());
 //middleware
 app.use((req,res,next)=>{
   res.locals.isLoggedIn = req.session.authenticated;
+  res.locals.path = req.path;
   next();
 })
 
@@ -47,6 +48,10 @@ app.use((req,res,next)=>{
 app.use(loginRoutes);
 
 app.get('/',loginController.getLogin);
+
+app.get('/events', (req, res) => {
+  res.render('events');
+});
 
 app.get("/dbTest", async(req, res) => {
   let sql = "SELECT CURDATE()";
