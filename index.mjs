@@ -53,6 +53,13 @@ app.get('/events', (req, res) => {
   res.render('events');
 });
 
+app.get('/events/new', (req, res) => {
+  if (!req.session?.authenticated) {
+    return res.redirect('/');
+  }
+  res.render('add-event');
+});
+
 app.get("/dbTest", async(req, res) => {
   let sql = "SELECT CURDATE()";
   const [rows] = await conn.query(sql);
