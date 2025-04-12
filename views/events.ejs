@@ -2,8 +2,37 @@
 <%- include("partials/nav.ejs") %>
 
 <body>
-  <div class="container">
+  <div class="container mt-4">
     <h1>All Events</h1>
-    <p>This is the events page.</p>
+
+    <% if (!events || events.length === 0) { %>
+      <p>No events listed.</p>
+    <% } else { %>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Event Title</th>
+            <th>Date</th>
+            <th>Location Name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% events.forEach(event => { %>
+            <tr>
+              <td><%= event.title %></td>
+              <td><%= event.date %></td>
+              <td><%= event.locationName %></td>
+              <td class="text-end">
+                <!-- Need to fix this to work with the database -->
+                <% if (event.user_id === current_user_id) { %>
+                  <a href="/events/<%= event.id %>/edit" class="btn btn-sm btn-primary">Edit</a>
+                <% } %>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
   </div>
 </body>
