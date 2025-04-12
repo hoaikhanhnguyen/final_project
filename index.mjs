@@ -40,6 +40,7 @@ app.use(flash());
 //middleware
 app.use((req,res,next)=>{
   res.locals.isLoggedIn = req.session.authenticated;
+  res.locals.path = req.path;
   next();
 })
 
@@ -47,6 +48,34 @@ app.use((req,res,next)=>{
 app.use(loginRoutes);
 
 app.get('/',loginController.getLogin);
+
+app.get('/events', (req, res) => {
+  const dummyEvents = [
+    {
+      id: 1,
+      title: "Dinner Party",
+      date: "2025-05-01",
+      locationName: "Venue 1",
+      user_id: 1
+    },
+    {
+      id: 2,
+      title: "TEDTalk",
+      date: "2025-06-15",
+      locationName: "Balboa Theater",
+      user_id: 2
+    }
+  ];
+  const currentUserId = req.session?.user_id || null;
+  res.render('events', {events: dummyEvents, current_user_id: currentUserId});
+});
+
+app.get('/events/new', (req, res) => {
+  if (!req.session?.authenticated) {
+    return res.redirect('/');
+  }
+  res.render('add-event');
+});
 
 app.get("/dbTest", async(req, res) => {
   let sql = "SELECT CURDATE()";

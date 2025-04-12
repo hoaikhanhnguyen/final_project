@@ -7,11 +7,11 @@
                    href="/welcome">Welcome</a>
             </li>
             <li class="main-header__item">
-                <a class="<%= path === '/' ? 'active' : '' %>" href="/">Events</a>
+                <a class="<%= path === '/' ? 'active' : '' %>" href="/events">Events</a>
             </li>
             <% if (isLoggedIn){ %>
             <li class="main-header__item">
-                <a class="<%= path === '/' ? 'active' : '' %>" href="/">Add Event</a>
+                <a class="<%= path === '/' ? 'active' : '' %>" href="/events/new">Add Event</a>
             </li>
             <% } %>
         </ul>

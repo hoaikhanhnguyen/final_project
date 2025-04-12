@@ -1,0 +1,103 @@
+<%- include("partials/header.ejs") %>
+<%- include("partials/nav.ejs") %>
+
+<body>
+  <div class="container mt-4">
+    <h1 class="mb-4">Add a New Event</h1>
+
+    <form action="/events" method="POST">
+      <!-- Event Title -->
+      <div class="mb-3">
+        <label for="title" class="form-label">Event Title</label>
+        <input type="text" class="form-control" id="title" name="title" required>
+      </div>
+
+      <!-- Event Description -->
+      <div class="mb-3">
+        <label for="description" class="form-label">Event Description</label>
+        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+      </div>
+
+      <!-- Date -->
+      <div class="mb-3">
+        <label for="date" class="form-label">Date</label>
+        <input type="date" class="form-control" id="date" name="date" required>
+      </div>
+
+      <!-- Start Time -->
+      <div class="mb-3">
+        <label for="startTime" class="form-label">Start Time</label>
+        <input type="time" class="form-control" id="startTime" name="startTime" required>
+      </div>
+
+      <!-- End Time -->
+      <div class="mb-3">
+        <label for="endTime" class="form-label">End Time</label>
+        <input type="time" class="form-control" id="endTime" name="endTime" required>
+      </div>
+
+      <!-- Guest Count -->
+      <div class="mb-3">
+        <label for="guestCount" class="form-label">Guest Count</label>
+        <input type="number" class="form-control" id="guestCount" name="guestCount" required>
+      </div>
+
+      <!-- Audio & Visuals -->
+      <div class="mb-3">
+        <label class="form-label">Audio and Visuals Required?</label><br>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="av" id="avTrue" value="true" required>
+          <label class="form-check-label" for="avTrue">Yes</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="av" id="avFalse" value="false">
+          <label class="form-check-label" for="avFalse">No</label>
+        </div>
+      </div>
+
+      <!-- Setup Type -->
+      <div class="mb-3">
+        <label for="setupType" class="form-label">Setup Type</label>
+        <select class="form-select" id="setupType" name="setupType" required>
+          <option value="">Select a setup...</option>
+          <option value="meal">Sit-down Meal</option>
+          <option value="theater">Theater Style</option>
+          <option value="reception">Reception Style</option>
+          <option value="classroom">Classroom Style</option>
+        </select>
+      </div>
+
+      <!-- Location Name -->
+      <div class="mb-3">
+        <label for="locationName" class="form-label">Location Name</label>
+        <input type="text" class="form-control" id="locationName" name="locationName" required>
+      </div>
+
+      <!-- Location Address -->
+      <div class="mb-3">
+        <label for="locationAddress" class="form-label">Location Address</label>
+        <input type="text" class="form-control" id="locationAddress" name="locationAddress" required>
+      </div>
+
+      <!-- Location Size -->
+      <div class="mb-3">
+        <label for="locationSize" class="form-label">Location Size</label>
+        <input type="text" class="form-control" id="locationSize" name="locationSize" required>
+      </div>
+
+      <!-- Weather -->
+      <div class="mb-3">
+        <label class="form-label">Weather (will be filled by API)</label>
+        <div class="border rounded p-3 text-muted" style="background: #f8f9fa;">
+          <em>Weather info placeholder</em>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="/events" class="btn btn-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+</body>
