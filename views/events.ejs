@@ -1,4 +1,4 @@
-<%- include("partials/header.ejs") %>
+<%- include("partials/header.ejs") %> 
 <%- include("partials/nav.ejs") %>
 
 <body>
@@ -19,6 +19,7 @@
         </thead>
         <tbody>
           <% events.forEach(event => { %>
+            <!-- Display each event in a table row -->
             <tr>
               <td><%= event.title %></td>
               <td><%= event.date %></td>
@@ -30,9 +31,23 @@
                 <% } %>
               </td>
             </tr>
+
+            <!-- Display weather info for each event -->
+            <tr>
+              <td colspan="4">
+                <div id="weather-<%= event.id %>">Loading weather...</div>
+                <script>
+                  //added getWeather function to fetch from API  
+                  getWeather("<%= event.locationName %>", "<%= event.date %>", "weather-<%= event.id %>");
+                </script>
+              </td>
+            </tr>
           <% }) %>
         </tbody>
       </table>
     <% } %>
   </div>
+
+<!-- linked to weather.js-->
+  <script src="/js/weather.js"></script>
 </body>
