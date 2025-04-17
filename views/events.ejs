@@ -3,7 +3,7 @@
 
 <body>
   <div class="container mt-4">
-    <h1>All Events</h1>
+    <h1 class="display-4">All Events</h1>
 
     <% if (!events || events.length === 0) { %>
       <p>No events listed.</p>
@@ -14,7 +14,8 @@
             <th>Event Title</th>
             <th>Date</th>
             <th>Location Name</th>
-            <th></th>
+            <th>Guest Count</th>
+            <th>Description</th>
           </tr>
         </thead>
         <tbody>
@@ -24,9 +25,11 @@
               <td><%= event.title %></td>
               <td><%= event.date %></td>
               <td><%= event.location_name %></td>
+              <td><%= event.guest_count %></td>
+              <td><%= event.description %></td>
               <td class="text-end">
                 <!-- Need to fix this to work with the database -->
-                <% if (event.user_id === current_user_id) { %>
+                <% if (event.host_id === current_user_id) { %>
                   <a href="/events/<%= event.id %>/edit" class="btn btn-sm btn-primary">Edit</a>
                 <% } %>
               </td>
