@@ -15,6 +15,10 @@ router.get('/logout', isAuthenticated, loginController.getLogout);
 
 router.get('/welcome', isAuthenticated, loginController.getWelcome);
 
+router.get('/signup', loginController.getSignUp);
+
+router.post('/signup', loginController.postSignUp);
+
 //middleware
 function isAuthenticated(req, res, next) {
   if (!req.session.authenticated) {

@@ -1,0 +1,28 @@
+<%- include("partials/header.ejs") %>
+<body>
+<%- include("partials/nav.ejs") %>
+<main>
+    <% if (errorMessage) { %>
+        <div class="user-message user-message--error"><%= errorMessage %></div>
+    <% } %>
+    <form class="login-form" action="/signup" method="POST">
+        <div class="form-control">
+            <label for="name" class="form-label">Name</label>
+            <input id="name" type="text" name="name"><br>
+        </div>
+        <div class="form-control">
+            <label for="email" class="form-label">E-mail</label>
+            <input id="email" type="email" name="email"><br>
+        </div>
+        <div class="form-control">
+            <label for="password" class="form-label">Password</label>
+            <input id="password" type="password" name="password"><br>
+        </div>
+        <div class="form-control">
+            <label for="reenterPassword" class="form-label">Re-Enter Password</label>
+            <input id="reenterPassword" type="password" name="reenterPassword"><br>
+        </div>
+        <button class="btn" type="submit">Sign Up</button>
+    </form>
+</main>
+</body>

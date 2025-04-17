@@ -57,6 +57,53 @@ exports.getWelcome = (req, res) => {
   });
 }
 
+exports.getSignUp = (req, res) => {
+  let message = req.flash('error');
+  if (message.length > 0) {
+    message = message[0];
+  } else {
+    message = null;
+  }
+  res.render('signup', {
+    path: '/signup',
+    isLoggedIn: false,
+    errorMessage: message
+  });
+}
+
+exports.postSignUp = async(req, res) => {
+  let message = req.flash('error');
+  if (message.length > 0) {
+    message = message[0];
+  } else {
+    message = null;
+  }
+
+  let name = req.body.name;
+  let email = req.body.email;
+  let password = req.body.password;
+  let reenter_password = req.body.reenterPassword;
+
+  let sql = 'SELECT * FROM Hosts WHERE email = ?';
+  const [rows] = await conn.query(sql, [email]);
+  if (rows.length > 0) {
+    req.flash('error', 'Email already exists. Use a different email address.');
+    return res.redirect('/signup');
+  }
+
+  if (password !== reenter_password) {
+    req.flash('error', 'Passwords do not match.');
+    return res.redirect('/signup');
+  }
+
+  let passwordHash = await bcrypt.hash(password, 12);
+  let sql2 = 'INSERT INTO Hosts(name, email, password) VALUES (?,?,?)';
+  const [rows2] = await conn.query(sql2, [name, email, passwordHash]);
+
+  req.flash('error', 'Successfully created user.');
+  return res.redirect('/signup');
+}
+
 exports.getLogout = (req, res) => {
   req.session.destroy();
   res.redirect('/');
