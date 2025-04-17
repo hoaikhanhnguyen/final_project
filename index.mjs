@@ -47,25 +47,32 @@ app.use(loginRoutes);
 
 app.get('/',loginController.getLogin);
 
-app.get('/events', (req, res) => {
+app.get('/events', async (req, res) => {
   const dummyEvents = [
     {
       id: 1,
       title: "Dinner Party",
       date: "2025-05-01",
-      locationName: "Venue 1",
+      location_name: "Venue 1",
       user_id: 1
     },
     {
       id: 2,
       title: "TEDTalk",
       date: "2025-06-15",
-      locationName: "Balboa Theater",
+      location_name: "Balboa Theater",
       user_id: 2
     }
   ];
+
+  let sql = `SELECT *
+        FROM Events
+        JOIN Locations 
+             ON Events.location_id = Locations.id`;
+
+  const [rows] = await conn.query(sql);
   const currentUserId = req.session?.user_id || null;
-  res.render('events', {events: dummyEvents, current_user_id: currentUserId});
+  res.render('events', {events: rows, current_user_id: currentUserId});
 });
 
 
