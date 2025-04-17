@@ -2,16 +2,17 @@
     <button id="side-menu-toggle">Menu</button>
     <nav class="main-header__nav">
         <ul class="main-header__item-list">
+            <% if (isLoggedIn){ %>
+                <li class="main-header__item">
+                    <a class="<%= path === '/welcome' ? 'active' : '' %>" href="/welcome">Home</a>
+                </li>
+            <% } %>
             <li class="main-header__item">
-                <a class="<%= path === '/welcome' ? 'active' : 'hidden' %>"
-                   href="/welcome">Welcome</a>
-            </li>
-            <li class="main-header__item">
-                <a class="<%= path === '/' ? 'active' : '' %>" href="/events">Events</a>
+                <a class="<%= path === '/events' ? 'active' : '' %>" href="/events">Events</a>
             </li>
             <% if (isLoggedIn){ %>
             <li class="main-header__item">
-                <a class="<%= path === '/' ? 'active' : '' %>" href="/events/new">Add Event</a>
+                <a class="<%= path === '/events/new' ? 'active' : '' %>" href="/events/new">Add Event</a>
             </li>
             <% } %>
         </ul>

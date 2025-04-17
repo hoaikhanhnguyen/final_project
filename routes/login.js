@@ -13,6 +13,8 @@ router.get('/myProfile', isAuthenticated, (req, res) => {
 
 router.get('/logout', isAuthenticated, loginController.getLogout);
 
+router.get('/welcome', isAuthenticated, loginController.getWelcome);
+
 //middleware
 function isAuthenticated(req, res, next) {
   if (!req.session.authenticated) {

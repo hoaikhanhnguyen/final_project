@@ -36,6 +36,7 @@ exports.postLogin = async(req, res) => {
   if (match) {
     req.session.authenticated = true;
     req.session.user_id = id;
+    req.session.user = email;
   res.render('welcome', {
     path: '/welcome',
     isLoggedIn: true,
@@ -46,6 +47,14 @@ exports.postLogin = async(req, res) => {
   req.flash('error', 'Invalid email or password.');
     res.redirect('/');
   }
+}
+
+exports.getWelcome = (req, res) => {
+  res.render('welcome', {
+    path: '/welcome',
+    isLoggedIn: true,
+    current_user: req.session.user
+  });
 }
 
 exports.getLogout = (req, res) => {
