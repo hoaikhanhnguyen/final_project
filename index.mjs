@@ -155,6 +155,76 @@ res.redirect("/events");
 
 });
 
+app.get('/events/:id/edit', async (req, res) => {
+  const eventId = req.params.id;
+
+  const [rows] = await conn.query(
+    `SELECT Events.*, Locations.location_name, Locations.location_street, Locations.location_city, Locations.location_zip, Locations.location_state
+     FROM Events
+     JOIN Locations ON Events.location_id = Locations.id
+     WHERE Events.id = ?`,
+    [eventId]
+  );
+
+  const event = rows[0];
+  console.log("Editing event:", event);
+  res.render('edit-event', { event });
+});
+
+
+app.post('/events/:id/edit', async (req, res) => {
+  const eventId = req.params.id;
+
+  const {
+    title,
+    description,
+    date,
+    time,
+    guestCount,
+    av_needed,
+    setup_type,
+    location_name,
+    location_street,
+    location_city,
+    location_zip,
+    location_state
+  } = req.body;
+
+  await conn.query(
+    `UPDATE Locations SET
+      location_name = ?, location_street = ?, location_city = ?, location_zip = ?, location_state = ?
+     WHERE id = (
+       SELECT location_id FROM Events WHERE id = ?
+     )`,
+    [
+      location_name,
+      location_street,
+      location_city,
+      location_zip,
+      location_state,
+      eventId
+    ]
+  );
+
+  await conn.query(
+    `UPDATE Events SET
+      title = ?, description = ?, date = ?, time = ?, guest_count = ?, av_needed = ?, setup_type = ?
+     WHERE id = ?`,
+    [
+      title,
+      description,
+      date,
+      time,
+      guestCount,
+      av_needed === "true",
+      setup_type,
+      eventId
+    ]
+  );
+
+  res.redirect('/events');
+});
+
 app.get("/dbTest", async(req, res) => {
   let sql = "SELECT CURDATE()";
   const [rows] = await conn.query(sql);
