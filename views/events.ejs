@@ -2,8 +2,11 @@
 <%- include("partials/nav.ejs") %>
 
 <body>
+ 
   <!-- linked to weather.js-->
   <script src="/js/weather.js"></script>
+
+
   <div class="container mt-4">
     <h1 class="display-4">All Events</h1>
 
@@ -41,21 +44,40 @@
               </td>
             </tr>
 
-            <!-- Display weather info for each event -->
             <tr>
-              <td colspan="4">
+              <!-- Weather column -->
+              <td colspan="2">
                 <div id="weather-<%= event.id %>">Loading weather...</div>
                 <script>
-                  //added getWeather function to fetch from API //update 4/20 fixed to get city not location name
                   getWeather("<%= event.location_city %>", "<%= event.date %>", "weather-<%= event.id %>");
                 </script>
               </td>
+            
+              <!-- Map column -->
+              <td colspan="2">
+                <div id="map-<%= event.id %>" 
+                     data-map-address="<%= event.location_city %>, <%= event.location_state %>" 
+                     style="height: 300px; width: 100%;">
+                </div>
+              </td>
             </tr>
+            
+            
           <% }) %>
         </tbody>
       </table>
     <% } %>
   </div>
+
+  
+
+  <script src="/js/map.js"></script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARgxfR2ksTBiPUR4fOZetdiaa4nWxKvvw&callback=initMap">
+  </script>
+  
+
+ 
 
 
 </body>
