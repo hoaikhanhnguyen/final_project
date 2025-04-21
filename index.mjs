@@ -65,7 +65,7 @@ app.get('/events', async (req, res) => {
     }
   ];
 
-  let sql = `SELECT *
+  let sql = `SELECT *, Events.id
         FROM Events
         JOIN Locations 
              ON Events.location_id = Locations.id`;
