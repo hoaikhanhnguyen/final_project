@@ -44,8 +44,8 @@
               <td colspan="4">
                 <div id="weather-<%= event.id %>">Loading weather...</div>
                 <script>
-                  //added getWeather function to fetch from API  
-                  getWeather("<%= event.location_name %>", "<%= event.date %>", "weather-<%= event.id %>");
+                  //added getWeather function to fetch from API //update 4/20 fixed to get city not location name
+                  getWeather("<%= event.location_city %>", "<%= event.date %>", "weather-<%= event.id %>");
                 </script>
               </td>
             </tr>
