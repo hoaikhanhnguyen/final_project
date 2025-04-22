@@ -8,12 +8,14 @@
 
 
   <div class="container mt-4">
-    <h1 class="display-4">All Events</h1>
+    <div class="jumbotron centered">
+      <h1>All Events</h1>
+    </div>
 
     <% if (!events || events.length === 0) { %>
       <p>No events listed.</p>
     <% } else { %>
-      <table class="table table-bordered">
+      <table class="table">
         <thead>
           <tr>
             <th>Event Title</th>

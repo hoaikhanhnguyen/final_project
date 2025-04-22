@@ -3,7 +3,9 @@
 
 <body>
   <div class="container mt-4">
-    <h1 class="mb-4">Add a New Event</h1>
+    <div class="jumbotron centered">
+      <h1>Add a new Event</h1>
+    </div>
 
     <form action="/events" method="POST">
       <!-- Event Title -->
@@ -57,7 +59,7 @@
 
       <!-- Setup Type -->
       <div class="mb-3">
-        <label for="setupType" class="form-label">Setup Type</label>
+        <label for="setup_type" class="form-label">Setup Type</label>
         <select class="form-select" id="setup_type" name="setup_type" required>
           <option value="">Select a setup...</option>
           <option value="meal">Sit-down Meal</option>
@@ -69,7 +71,7 @@
 
       <!-- Location Name -->
       <div class="mb-3">
-        <label for="locationName" class="form-label">Location Name</label>
+        <label for="location_name" class="form-label">Location Name</label>
         <input type="text" class="form-control" id="location_name" name="location_name" required>
       </div>
 
