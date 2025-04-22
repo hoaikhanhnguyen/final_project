@@ -2,6 +2,13 @@
 <body>
 <%- include("partials/nav.ejs") %>
     <main>
+        <div class="jumbotron centered">
+            <h1>Event Tracker Sign-In</h1>
+            <div class="centered viewEvents">
+                <a href="/events">View Events</a>
+            </div>
+            <p>Please sign in to create and modify your events</p>
+        </div>
         <% if (errorMessage) { %>
         <div class="user-message user-message--error"><%= errorMessage %></div>
         <% } %>
@@ -15,6 +22,7 @@
                 <input id="password" type="password" name="password"><br>
             </div>
             <button class="btn" type="submit">Login</button>
+            <a id="signUpLink" href="/signup">Create new account</a>
         </form>
     </main>
 </body>

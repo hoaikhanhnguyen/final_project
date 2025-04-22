@@ -139,6 +139,14 @@ form {
   color: white;
 }
 
+.viewEvents {
+   margin-bottom: 5rem;
+}
+
+#signUpLink {
+  margin-left: 5rem;
+}
+
 @media (min-width: 768px) {
   .main-header__nav {
     display: flex;
