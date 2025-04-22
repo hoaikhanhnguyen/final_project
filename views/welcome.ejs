@@ -3,7 +3,13 @@
 <body>
 <div class="container">
 <div>
-    <h3 class="display-4">Welcome, you are logged in as <em><%= current_user %></em></h3>
+    <div class="jumbotron centered">
+        <h1>Event Tracker - Welcome!</h1>
+        <div class="centered viewEvents">
+            <a href="/">Return to Login Page</a>
+        </div>
+        <p>Hello <%= username %>, you are logged into account <em><%= current_user %></em></p>
+    </div>
 </div>
 
 

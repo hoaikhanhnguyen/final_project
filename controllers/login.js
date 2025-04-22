@@ -19,6 +19,7 @@ exports.postLogin = async(req, res) => {
   } else {
     message = null;
   }
+
   let email = req.body.email;
   let password = req.body.password;
 
@@ -29,6 +30,7 @@ exports.postLogin = async(req, res) => {
   if (rows.length > 0) {
     passwordHash = rows[0].password;
     id = rows[0].id;
+    name = rows[0].name;
   }
 
   let match = await bcrypt.compare(password, passwordHash);
@@ -37,11 +39,13 @@ exports.postLogin = async(req, res) => {
     req.session.authenticated = true;
     req.session.user_id = id;
     req.session.user = email;
+    req.session.username = name;
   res.render('welcome', {
     path: '/welcome',
     isLoggedIn: true,
     current_user: email,
-    errorMessage: message
+    errorMessage: message,
+    username: name,
   });
   } else {
   req.flash('error', 'Invalid email or password.');
@@ -53,7 +57,8 @@ exports.getWelcome = (req, res) => {
   res.render('welcome', {
     path: '/welcome',
     isLoggedIn: true,
-    current_user: req.session.user
+    current_user: req.session.user,
+    username: req.session.username
   });
 }
 
