@@ -176,3 +176,16 @@ form {
   background: rgb(255, 176, 176);
   color: red;
 }
+
+/*Welcome Page Images*/
+#eventsImg {
+  border-radius: 50%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#addEventsImg {
+  border-radius: 50%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
