@@ -2,24 +2,31 @@
 <body>
 <%- include("partials/nav.ejs") %>
 <main>
+    <div class="jumbotron centered">
+        <h1>Event Tracker - Create Account</h1>
+        <div class="centered viewEvents">
+            <a href="/">Return to Login Page</a>
+        </div>
+        <p>Please fill out account details. One account per email</p>
+    </div>
     <% if (errorMessage) { %>
         <div class="user-message user-message--error"><%= errorMessage %></div>
     <% } %>
     <form class="login-form" action="/signup" method="POST">
         <div class="form-control">
-            <label for="name" class="form-label">Name</label>
+            <label for="name" class="form-label">Name:</label>
             <input id="name" type="text" name="name"><br>
         </div>
         <div class="form-control">
-            <label for="email" class="form-label">E-mail</label>
+            <label for="email" class="form-label">E-mail:</label>
             <input id="email" type="email" name="email"><br>
         </div>
         <div class="form-control">
-            <label for="password" class="form-label">Password</label>
+            <label for="password" class="form-label">Password:</label>
             <input id="password" type="password" name="password"><br>
         </div>
         <div class="form-control">
-            <label for="reenterPassword" class="form-label">Re-Enter Password</label>
+            <label for="reenterPassword" class="form-label">Re-Enter Password:</label>
             <input id="reenterPassword" type="password" name="reenterPassword"><br>
         </div>
         <button class="btn" type="submit">Sign Up</button>
