@@ -28,12 +28,11 @@
           </tr>
         </thead>
         <tbody>
-          <% events.forEach(event => { console.log(event.date);
-            event.date = event.date.toISOString().substr(0, 10);%>
+          <% events.forEach(event => { %>
             <!-- Display each event in a table row -->
             <tr>
               <td><%= event.title %></td>
-              <td><%= event.date %></td>
+              <td><%= event.date.toISOString().substr(0, 10); %></td>
               <td><%= event.time %></td>
               <td><%= event.location_name %></td>
               <td><%= event.location_city %></td>
