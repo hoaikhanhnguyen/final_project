@@ -2,11 +2,8 @@
 <%- include("partials/nav.ejs") %>
 
 <body>
- 
   <!-- linked to weather.js-->
   <script src="/js/weather.js"></script>
-
-
   <div class="container mt-4">
     <div class="jumbotron centered">
       <h1>All Events</h1>
@@ -20,6 +17,7 @@
           <tr>
             <th>Event Title</th>
             <th>Date</th>
+            <th>Time</th>
             <th>Location Name</th>
             <th>Guest Count</th>
             <th>Description</th>
@@ -28,11 +26,12 @@
           </tr>
         </thead>
         <tbody>
-          <% events.forEach(event => { %>
+          <% events.forEach(event => { console.log(event.date);%>
             <!-- Display each event in a table row -->
             <tr>
               <td><%= event.title %></td>
               <td><%= event.date %></td>
+              <td><%= event.time %></td>
               <td><%= event.location_name %></td>
               <td><%= event.guest_count %></td>
               <td><%= event.description %></td>
@@ -45,7 +44,6 @@
                 <% } %>
               </td>
             </tr>
-
             <tr>
               <!-- Weather column -->
               <td colspan="2">
@@ -63,23 +61,13 @@
                 </div>
               </td>
             </tr>
-            
-            
           <% }) %>
         </tbody>
       </table>
     <% } %>
   </div>
-
-  
-
   <script src="/js/map.js"></script>
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARgxfR2ksTBiPUR4fOZetdiaa4nWxKvvw&callback=initMap">
   </script>
-  
-
- 
-
-
 </body>

@@ -51,19 +51,19 @@
 
       <!-- Setup Type -->
       <div class="mb-3">
-        <label for="setupType" class="form-label">Setup Type</label>
+        <label for="setup_type" class="form-label">Setup Type</label>
         <select class="form-select" id="setup_type" name="setup_type" required>
           <option value="">Select a setup...</option>
-          <option value="meal" <%= event.setup_type === 'meal' ? 'selected' : '' %>>Sit-down Meal</option>
-          <option value="theater" <%= event.setup_type === 'theater' ? 'selected' : '' %>>Theater Style</option>
-          <option value="reception" <%= event.setup_type === 'reception' ? 'selected' : '' %>>Reception Style</option>
-          <option value="classroom" <%= event.setup_type === 'classroom' ? 'selected' : '' %>>Classroom Style</option>
+          <option value="Sit-Down Meal" <%= event.setup_type === 'Sit-Down Meal' ? 'selected' : '' %>>Sit-down Meal</option>
+          <option value="Theater Style" <%= event.setup_type === 'Theater Style' ? 'selected' : '' %>>Theater Style</option>
+          <option value="Reception Style" <%= event.setup_type === 'Reception Style' ? 'selected' : '' %>>Reception Style</option>
+          <option value="Classroom Style" <%= event.setup_type === 'Classroom Style' ? 'selected' : '' %>>Classroom Style</option>
         </select>
       </div>
 
       <!-- Location Name -->
       <div class="mb-3">
-        <label for="locationName" class="form-label">Location Name</label>
+        <label for="location_name" class="form-label">Location Name</label>
         <input type="text" class="form-control" id="location_name" name="location_name" value="<%= event.location_name %>" required>
       </div>
 
