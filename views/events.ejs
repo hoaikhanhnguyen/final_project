@@ -19,6 +19,8 @@
             <th>Date</th>
             <th>Time</th>
             <th>Location Name</th>
+            <th>City</th>
+            <th>State</th>
             <th>Guest Count</th>
             <th>Description</th>
             <th>AV Needed</th>
@@ -34,6 +36,8 @@
               <td><%= event.date %></td>
               <td><%= event.time %></td>
               <td><%= event.location_name %></td>
+              <td><%= event.location_city %></td>
+              <td><%= event.location_state %></td>
               <td><%= event.guest_count %></td>
               <td><%= event.description %></td>
               <td><%= event.av_needed ? "Yes" : "No" %></td>
