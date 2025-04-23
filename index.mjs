@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import session from "express-session";
 import loginRoutes from "./routes/login.js";
@@ -52,7 +55,7 @@ app.get('/events', async (req, res) => {
 
   const [rows] = await conn.query(sql);
   const currentUserId = req.session?.user_id || null;
-  res.render('events', {events: rows, current_user_id: currentUserId});
+  res.render('events', {events: rows, current_user_id: currentUserId, weatherApiKey: process.env.WEATHER_API_KEY, googleApiKey: process.env.GOOGLE_MAPS_API_KEY});
 });
 
 
