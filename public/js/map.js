@@ -8,7 +8,7 @@ async function geocodeAddress(address, apiKey) {
     if (data.status === "OK") {
       return data.results[0].geometry.location; // { lat: ..., lng: ... }
     } else {
-      throw new Error("Geocoding failed: " + data.status);
+      throw new Error("You entered an incorrect address. Please re-edit your event.");
     }
   }
   

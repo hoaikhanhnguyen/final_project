@@ -9,7 +9,7 @@ async function getWeather(city, eventDate, elementId) {
     const diffDays = Math.ceil(diffTime / (1000*60*60* 24));
 
     if (diffDays >14) {
-        document.getElementById(elementId).innerText = "Forecast not available beyond 14 days.";
+        document.getElementById(elementId).innerText = "Forecasts are unavailable beyond 14 days. Please check back closer to your date.";
         return;
     }
 
