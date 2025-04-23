@@ -3,6 +3,7 @@ async function geocodeAddress(address, apiKey) {
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
     const response = await fetch(url);
     const data = await response.json();
+    console.log("Geocoding response for:", address, data);
   
     if (data.status === "OK") {
       return data.results[0].geometry.location; // { lat: ..., lng: ... }
@@ -13,7 +14,7 @@ async function geocodeAddress(address, apiKey) {
   
   // Called automatically by the Google Maps JS API via callback=initMap
   window.initMap = async function () {
-    const apiKey = "AIzaSyARgxfR2ksTBiPUR4fOZetdiaa4nWxKvvw"; 
+    const apiKey = GOOGLE_API_KEY;
     const mapDivs = document.querySelectorAll("[data-map-address]");
   
     for (const div of mapDivs) {
