@@ -47,6 +47,12 @@
                   <a href="/events/<%= event.id %>/edit" class="btn btn-sm btn-primary">Edit</a>
                 <% } %>
               </td>
+              <td class="text-end">
+                <!-- Need to fix this to work with the database -->
+                <% if (event.host_id === current_user_id) { %>
+                  <a href="/events/delete?eventId=<%= event.id %>" class="btn btn-sm btn-danger">Delete</a>
+                <% } %>
+              </td>
             </tr>
             <tr>
               <!-- Weather column -->

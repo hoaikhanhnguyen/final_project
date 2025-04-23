@@ -9,10 +9,6 @@ import errorController from "./controllers/error.js";
 import bodyParser from "body-parser";
 import conn from "./utils/database.js";
 
-//for database access
-import path from "path";
-import { fileURLToPath } from "url";
-
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -48,22 +44,6 @@ app.use(loginRoutes);
 app.get('/',loginController.getLogin);
 
 app.get('/events', async (req, res) => {
-  const dummyEvents = [
-    {
-      id: 1,
-      title: "Dinner Party",
-      date: "2025-05-01",
-      location_name: "Venue 1",
-      user_id: 1
-    },
-    {
-      id: 2,
-      title: "TEDTalk",
-      date: "2025-06-15",
-      location_name: "Balboa Theater",
-      user_id: 2
-    }
-  ];
 
   let sql = `SELECT *, Events.id
         FROM Events
@@ -89,7 +69,6 @@ app.get('/events/new', async (req, res) => {
     //pass location info to frm
     res.render('add-event', { locations }); 
   } catch (err) {
-    console.error("Error locading locations: ", err);
     res.status(500).send("Server error");
   }  
 });
@@ -130,7 +109,6 @@ const {
   av_needed,
   setup_type
 } = req.body;
-
 const hostId = req.session.user_id;
 
 const insertEventQuery = `
@@ -167,7 +145,6 @@ app.get('/events/:id/edit', async (req, res) => {
   );
 
   const event = rows[0];
-  console.log("Editing event:", event);
   res.render('edit-event', { event });
 });
 
@@ -205,7 +182,6 @@ app.post('/events/:id/edit', async (req, res) => {
       eventId
     ]
   );
-
   await conn.query(
     `UPDATE Events SET
       title = ?, description = ?, date = ?, time = ?, guest_count = ?, av_needed = ?, setup_type = ?
@@ -223,6 +199,18 @@ app.post('/events/:id/edit', async (req, res) => {
   );
 
   res.redirect('/events');
+});
+
+
+app.get("/events/delete", async (req, res) => {
+  const eventId = req.query.eventId;
+
+  let sql = `DELETE 
+                    FROM Events
+                    WHERE id  = ?`;
+  const [rows] = await conn.query(sql, [eventId]);
+
+  res.redirect("/events");
 });
 
 app.get("/dbTest", async(req, res) => {
